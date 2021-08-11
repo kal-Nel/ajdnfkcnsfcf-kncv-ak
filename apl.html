@@ -1,0 +1,40 @@
+<!DOCTYPE hmtl>
+    <html>
+        <head>
+            <style>
+                table {
+                    border-collapse: separate;
+                    border-spacing: 15px; /* cellspacing */
+                }
+
+                table td {
+                    padding-right: 25px; /* cellpading */
+                }
+</style>
+        </head>
+<body>
+    <h1>Leave application</h1>
+    <strong>Document number: </strong>{WFD_Signature}<br />
+    <strong>Registration date: </strong>{WFD_AttDateTime3}<br />
+    <strong>Application status (step): </strong>{STP_NAME}
+       <hr />
+       <table>
+           <tr>
+               <td><strong>Registered by:</strong></td>
+               <td>{N:WFD_AttPeople1}</td>
+               <td><strong>Number of days</strong></td>
+           </tr>
+            <tr>
+                <td><strong>Type of absence:</strong></td>
+                <td>{N:WFD_AttChoose1}</td>
+                <td><strong>Date to</strong></td>
+                <td>{WFD_AttDateTime1}</td>
+            </tr>
+            
+       </table>
+        <br />
+        <strong>Justification:</strong>
+        <p style="font-style:italic">{WFD_AttLong1}</p>
+
+</body>
+    </html>        
