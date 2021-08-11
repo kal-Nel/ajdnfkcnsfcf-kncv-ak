@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <!--FILE INPUT FIELD-->
+        <input type="file" id="file" />
+        <!--FILE "submit" BUTTON-->
+        <input type="button" value="upload" onclick="uploadFunction()" />
+        <!--UPLOAD INFORMATION-->
+        <div id="info"><!--xhr.responseText goes here--></div>
+
+        <script type="text/javascript">
+            function uploadFunction() {
+                //get file object   
+                var file = document.getElementById("file").files[0]; //input tags of type "file" always use a "files[]" array
+                //init XMLHttpRequest onject
+                xhr = new XMLHttpRequest();
+                //add event listener(s)
+                xhr.upload.addEventListener("progress", transferProgress, false); //note "upload" attribute
+                //create POST request
+                xhr.open("POST", "handle_transfer.php?fname="+file.name, true);
+                //send file object
+                xhr.send(file);
+                //check for response fom server-side script (handle_transfer.php)
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && chr.status == 200) {
+                        //write response to HTML DOM
+                        document.getElementById("info").innerHTML = xhr.responseText;
+                    }
+                }
+            }
+            function transferProgress(progress_event) {
+                if (progress_event.lengthComputable) {//if file size is known...
+                    //write bytes uploaded yo HTML DOM
+                    document.getElementById("info").innerHTML = progress_event.loaded;
+                }
+            }
+</script>
+    </body>
+</html>
